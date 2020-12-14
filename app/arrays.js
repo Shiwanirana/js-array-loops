@@ -4,7 +4,19 @@
 // output: ['is', 'a', 'split', 'sentence.', 'This']
 
 function rearranger(arr) {
+
+    let firstElm = arr[0]
+    let newArr= []
+   
+    for (let index = 1; index < arr.length; index++) {
+         newArr.push(arr[index])
+    }
+    newArr.push(firstElm)
+
+    return newArr
+
 }
+
 
 
 // ------------------------------------------
@@ -16,9 +28,52 @@ function rearranger(arr) {
 // output: 42
 
 function largestNum(arr) {
+    // var max=0;
+    // var count=0;
+    // for(var i=0; i<=arr.length; i++)
+    // {
+    //     if(max<arr[i])
+    //     {
+    //        max= arr[i];
+    //     }
+    //     else if(max==arr[i])
+    //     {
+    //         count++
+    //     }
+    // }
+    //      let val={max : count};
+    //      return val;
+    // }
+
+    // arr.sort()
+    // console.log(arr)
+    // let large = arr.pop()
+    // return(large)
+  
+  
+    let object = {}
+    let number = 0
+    let count = 0
+    
+    for (let i=0;i<arr.length;i++){
+        if (number < arr[i]){
+            number = arr[i]
+        }
+    }
+    
+    for (let i=0; i < arr.length; i++){
+        if (number == arr[i]){
+            count++
+        }
+    }
+    
+    if (count>1){
+        object[number]=count
+        return object
+    }
+    else{return number} 
+
 }
-
-
 // ------------------------------------------
 
 
@@ -28,6 +83,12 @@ function largestNum(arr) {
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
+    function multiply(num)
+    {
+        return num*arr.length;
+    }
+    var result= arr.map(multiply);
+   return result;
 }
 
 
@@ -63,6 +124,22 @@ let flights = [{
 
 function flightCost(destination, firstClass) {
     //***hint: use the find method***
+    route = {}
+
+    for (let index = 0; index < flights.length; index++) {
+        route = flights[index]
+        if(route.to == destination.toUpperCase()){
+            if (firstClass) {
+                return route.prices.firstClass
+            } else {
+                return route.prices.standard
+            }
+
+        }
+        
+    }
+
+
 
 }
 
@@ -84,6 +161,15 @@ let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'P
 { id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
 
 function findById(id) {
+    for(i=0;i<staff.length;i++)
+    {
+        if(staff[i].id==id)
+        {
+            return staff[i];
+        }
+    } 
+    return ({error: "No user with that id."});
+    
 
 }
 
@@ -111,4 +197,12 @@ let theBand = {
 }
 
 function bandMemberDetails(name) {
+
+    for (let index = 0; index < theBand.members.length; index++) {
+        member = theBand.members[index]
+        if(member.name == name){
+            return `${name} is in the band and plays the ${member.instrument}`
+        }
+        
+    }
 }
